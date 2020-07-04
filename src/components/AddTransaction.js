@@ -1,6 +1,9 @@
-import React from 'react'
+import React , {useState} from 'react'
 
 export const AddTransaction = () => {
+    const [description,setDescription]=useState();
+    const [transactionAmount,setTransactionAmount]=useState();
+
     return (
         <div>
             <h3>Add New Transaction</h3>
@@ -12,6 +15,8 @@ export const AddTransaction = () => {
                     <input  type="text" 
                             id="description" 
                             placeholder="Details of transaction"
+                            value={description}
+                            onChange={(e)=> setDescription(e.target.value)}
                     />
                 </div>
                 <div className="form-control">
@@ -21,6 +26,8 @@ export const AddTransaction = () => {
                     <input  type="Number"
                             id="transactionamount"
                             placeholder="Enter transaction amount"
+                            value={transactionAmount}
+                            onChange={(e)=> setTransactionAmount(e.target.value)}
                     />
                 </div>
                 <button className="btn">
