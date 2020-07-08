@@ -27,7 +27,6 @@ export const GlobalProvider = ({ children })=>{
     }
 
     //Add new Transaction Action
-
     function addTransaction(transaction){
         dispatch({
             type: 'ADD_TRANSACTION',

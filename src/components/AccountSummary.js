@@ -1,22 +1,22 @@
 import React, { useContext } from 'react'
-
 //import the Global state
 import { GlobalContext} from '../context/GlobalState';
-import { Transaction } from './Transaction';
+
+
 export const AccountSummary = () => {
 
     const {transactions} = useContext(GlobalContext);
 
-    const transactionAmounts=transactions.map(transaction => transaction.trasactionAmount);
+    const transactionAmounts=transactions.map(transaction => transaction.transactionAmount);
 
     const income = transactionAmounts
         .filter(transaction => transaction > 0)
         .reduce((acc,transaction) => (acc +=transaction), 0)
         .toFixed(2);
 
-    const expense=Math.abs(transactionAmounts
+    const expense=(transactionAmounts
         .filter(transaction => transaction < 0)
-        .reduce((acc,transaction) => (acc +=transaction),0))
+        .reduce((acc,transaction) => (acc +=transaction),0)*-1)
         .toFixed(2);
 
     return (

@@ -4,8 +4,8 @@ import { GlobalContext } from '../context/GlobalState'
 export const Transaction = ({transaction}) => {
     const {delTransaction}= useContext(GlobalContext);
 
-    const sign=transaction.transactionAmount > 0 ? '+' : '-';
-    const transactionType=transaction.transactionAmount > 0 ? 'plus' : 'minus';
+    const sign=transaction.transactionAmount < 0 ? '-' : '+';
+    const transactionType=transaction.transactionAmount < 0 ? 'minus' : 'plus';
 
 
     return (
