@@ -1,13 +1,30 @@
-import React , {useState} from 'react'
+import React , {useState, useContext} from 'react'
+
+//import the global state
+import {GlobalContext} from '../context/GlobalState';
 
 export const AddTransaction = () => {
-    const [description,setDescription]=useState();
-    const [transactionAmount,setTransactionAmount]=useState();
+    const [description,setDescription]=useState('');
+    const [transactionAmount,setTransactionAmount]=useState('');
+
+    const { addTransaction } = useContext(GlobalContext);
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const newTransaction = {
+            id: Math.floor(Math.random() * 1000000000),
+            description,
+            transactionAmount: +transactionAmount
+        }
+
+        addTransaction(newTransaction);
+    }
 
     return (
         <div>
             <h3>Add New Transaction</h3>
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="form-control">
                     <label htmlFor="description">
                         Description
@@ -17,6 +34,7 @@ export const AddTransaction = () => {
                             placeholder="Details of transaction"
                             value={description}
                             onChange={(e)=> setDescription(e.target.value)}
+                            required="required"
                     />
                 </div>
                 <div className="form-control">
@@ -25,9 +43,10 @@ export const AddTransaction = () => {
                     </label>
                     <input  type="Number"
                             id="transactionamount"
-                            placeholder="Enter transaction amount"
+                            placeholder="Enter Dollar Transaction amount"
                             value={transactionAmount}
                             onChange={(e)=> setTransactionAmount(e.target.value)}
+                            required="required"
                     />
                 </div>
                 <button className="btn">
